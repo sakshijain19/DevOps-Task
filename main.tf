@@ -6,7 +6,7 @@ resource "aws_instance" "example" {
   ami           = "ami-0ecb62995f68bb549"
   instance_type = "t2.micro"
   vpc_security_group_ids = ["sg-088e5ceffeadaf431"]
-  key_name = id_rsa.pem
+  
   tags = {
     Name = "ExampleInstance"
   }
