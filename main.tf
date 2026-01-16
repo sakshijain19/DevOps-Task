@@ -9,7 +9,7 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
-resource "aws_instance" "my_ec2" {
+resource "aws_instance" "ExampleInstance" {
   ami = var.ami_id
   instance_type = var.instance_type
 
@@ -22,4 +22,3 @@ resource "aws_instance" "my_ec2" {
 }
 
 
-  
