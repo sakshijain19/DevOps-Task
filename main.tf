@@ -14,7 +14,7 @@ resource "aws_instance" "ExampleInstance" {
   instance_type = var.instance_type
 
   subnet_id              = "subnet-0ff35381a830914ad"
-  vpc_security_group_ids = ["sg-0abc1234def567890"]
+  vpc_security_group_ids = ["sg-0abc1234def567890"] # <-- Fix here
 
   tags = {
     Name = "ExampleInstance"
