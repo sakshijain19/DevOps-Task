@@ -14,7 +14,7 @@ resource "aws_instance" "my_ec2" {
   instance_type = var.instance_type
 
   subnet_id              = "subnet-0ff35381a830914ad"
-  vpc_security_group_ids = ["vpc-0b5dc84df6efcb6a9"]
+  vpc_security_group_ids = ["sg-0abc1234def567890"]
 
   tags = {
     Name = "ExampleInstance"
