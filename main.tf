@@ -9,16 +9,18 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
+
 resource "aws_instance" "ExampleInstance" {
-  ami = var.ami_id
+  ami           = var.ami_id
   instance_type = var.instance_type
 
   subnet_id              = "subnet-0ff35381a830914ad"
-  vpc_security_group_ids = ["sg-0abc1234def567890"] # <-- Fix here
+  vpc_security_group_ids = ["sg-0abc1234def567890"]  # <-- FIX HERE
 
   tags = {
     Name = "ExampleInstance"
   }
 }
+
 
 
