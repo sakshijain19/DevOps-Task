@@ -7,7 +7,7 @@ terraform {
   backend "s3" {
   bucket = "sample001-test"
   key    = "terraform.tfstate"
-  region = local.region
+  region = "us-east-1"
 }
 }
 
@@ -18,7 +18,7 @@ provider "aws" {
 data "aws_security_group" "mysg" {
   filter {
     name = "name"
-    values = "mysg"
+    values = ["mysg"]
   }
   filter {
     name = "vpc-id"
