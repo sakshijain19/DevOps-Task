@@ -20,10 +20,6 @@ data "aws_security_group" "mysg" {
     name = "name"
     values = ["mysg"]
   }
-  filter {
-    name = "vpc-id"
-    values = ["var.vpc_id"]
-  }
 }
 resource "aws_instance" "ExampleInstance" {
   ami           = var.ami_id
