@@ -5,5 +5,5 @@ variable "instance_type" {
   default = "t3.micro"
 }
 variable "vpc_id" {
-  default = ["vpc-0b5dc84df6efcb6a9"]
+  default = ["sg-088e5ceffeadaf431"]
 }
