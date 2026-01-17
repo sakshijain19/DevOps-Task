@@ -14,28 +14,23 @@ terraform {
 provider "aws" {
   region = local.region 
 }
-data "aws_ami" "amazon_linux" {
-  most_recent = true
 
+data "aws_security_group" "mysg" {
   filter {
-    name   = "name"
-    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+    name = "name"
+    values = "mysg"
   }
-
   filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
+    name = "vpc-id"
+    values = ["var.vpc_security_group_ids"]
   }
-
-  owners = ["095074107161"] # Amazon
-  
 }
 resource "aws_instance" "ExampleInstance" {
-  ami           = data.aws_ami.amazon_linux.id
+  ami           = var.ami_id
   instance_type = var.instance_type
 
   subnet_id              = "subnet-0ff35381a830914ad"
-  vpc_security_group_ids = ["sg-088e5ceffeadaf431"]  # <-- FIX HERE
+  vpc_security_group_ids = [data.aws_security_group.mysg.id]
 
   tags = {
     Name = local.Instance_name

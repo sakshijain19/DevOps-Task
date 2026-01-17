@@ -4,3 +4,6 @@ variable "ami_id" {
 variable "instance_type" {
   default = "t3.micro"
 }
+variable "vpc_security_group_ids" {
+  default = ["sg-088e5ceffeadaf431"]
+}
