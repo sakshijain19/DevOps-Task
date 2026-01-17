@@ -17,10 +17,16 @@ provider "aws" {
 
 data "aws_security_group" "mysg" {
   filter {
-    name = "name"
+    name   = "group-name"
     values = ["mysg"]
   }
+
+  filter {
+    name   = "vpc-id"
+    values = ["vpc-0b5dc84df6efcb6a9"]
+  }
 }
+
 resource "aws_instance" "ExampleInstance" {
   ami           = var.ami_id
   instance_type = var.instance_type
