@@ -22,7 +22,7 @@ data "aws_security_group" "mysg" {
   }
   filter {
     name = "vpc-id"
-    values = ["var.vpc_security_group_ids"]
+    values = ["var.vpc_id"]
   }
 }
 resource "aws_instance" "ExampleInstance" {
