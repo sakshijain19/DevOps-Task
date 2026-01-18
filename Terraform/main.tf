@@ -1,16 +1,16 @@
 terraform {
 backend "s3" {
-bucket = "sample001-test"
-region = "us-east-1"
-key = "terraform.tfstate"
+    bucket = "sample001-test"
+    key    = "terraform.tfstate"
+    region = "us-east-1"
 }
 }
 provider "aws" {
 region = "us-east-1"
 }
 resource "aws_security_group" "web_sg" {
-name   = "web-sg"
-vpc_id = aws_vpc.myvpc.id
+    name   = "web-sg"
+    vpc_id = aws_vpc.myvpc.id
 
 ingress {
     from_port   = 22
@@ -62,7 +62,7 @@ depends_on = [ aws_security_group.web_sg ]
 }
 
 module "my_vpc_module" {
-source = ".Module/VPC"
+source = "Terraform/Module/VPC"
 vpc_cidr_block = var.vpc_cidr
 pvt_subnet_cidr = var.private_subnet_cidr
 pub_subnet_cidr = var.public_subnet_cidr
