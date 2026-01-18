@@ -39,10 +39,10 @@ tags = {
 }
 
 resource "aws_instance" "webserver" {
-ami           = "ami-0ecb62995f68bb549"
-instance_type = "t3.micro"
+ami           = var.ami_id
+instance_type = var.instance_type
 
-subnet_id              = aws_subnet.pubsubnet.id
+subnet_id              = module.my_vpc_module.pubsubnet_id
 vpc_security_group_ids = [aws_security_group.web_sg.id]
 
 tags = {
