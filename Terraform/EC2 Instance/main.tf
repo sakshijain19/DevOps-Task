@@ -27,7 +27,7 @@ data "aws_security_group" "mysg" {
   }
 }
 
-resource "aws_instance" "ExampleInstance" {
+resource "aws_instance" "Server1" {
   ami           = var.ami_id
   instance_type = var.instance_type
 
@@ -38,6 +38,5 @@ resource "aws_instance" "ExampleInstance" {
     Name = local.Instance_name
   }
 }
-
 
 
