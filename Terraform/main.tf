@@ -10,7 +10,7 @@ region = var.region
 }
 resource "aws_security_group" "web_sg" {
     name   = "${var.project}-sg"
-    vpc_id = var.vpc_id
+    vpc_id = module.my_vpc_module.vpc_id
 
 ingress {
     from_port   = 22
@@ -36,6 +36,9 @@ egress {
 tags = {
     Name = "${var.project}-sg"
 }
+depends_on = [
+    module.my_vpc_module
+]
 }
 
 module "my_vpc_module" {
@@ -50,8 +53,8 @@ source = "./Module/EC2_Instance"
 ami_id = var.ami_id
 instance_type = var.instance_type
 subnet_id = module.my_vpc_module.public_subnet_id
-vpc_id = module.my_vpc_module.vpc_id
 key = var.key
 project = var.project
 env = var.env
+sg_id = aws_security_group.web_sg.id
 }
