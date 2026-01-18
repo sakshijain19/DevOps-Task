@@ -1,11 +1,11 @@
-resource "aws_instance" "webserver" {
-ami           = var.ami_id
+resource "aws_instance" "my-instance" {
+ami = var.ami_id
 instance_type = var.instance_type
-vpc_security_group_ids = var.sg_id
-subnet_id              = var.subnet_id
 key_name = var.key
-tags = {
+vpc_security_group_ids = var.sg_id
+tags ={
     Name = "${var.project}-instance"
-env  = var.env
+    env = var.env
 }
+subnet_id = var.subnet_id
 }
