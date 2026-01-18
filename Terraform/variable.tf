@@ -16,9 +16,10 @@ variable "ami_id" {
 variable "instance_type" {
     default = "t3.micro"
 }
-variable "vpc_id" {
-    default = "vpc-0b5dc84df6efcb6a9"
+variable "sg_id" {
+type = list(string)
 }
+
 variable "key" {
     default = "id_rsa"
 }
