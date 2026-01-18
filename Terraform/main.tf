@@ -40,7 +40,7 @@ resource "aws_security_group" "mysg" {
   ]
 }
 module "my_vpc_module" {
-    source = "./modules/vpc"
+    source = "./Modules/VPC"
     project = var.project
     vpc_cidr = var.vpc_cidr
     pvt_subnet_cidr = var.private_cidr
@@ -49,7 +49,7 @@ module "my_vpc_module" {
 }
 
 module "my_instance" {
-  source = "./modules/instance"
+  source = "./Modules/EC2_Instance"
   count = var.instance_count
   image_id = var.image_id 
   key_pair = var.key_pair
