@@ -9,8 +9,8 @@ provider "aws" {
 region = var.region
 }
 resource "aws_security_group" "web_sg" {
-    name   = "web-sg"
-    vpc_id = module.my_vpc_module.vpc_id
+    name   = "${var.project}-sg"
+    vpc_id = var.vpc_id
 
 ingress {
     from_port   = 22
