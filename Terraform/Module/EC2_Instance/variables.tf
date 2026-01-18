@@ -2,4 +2,5 @@ variable "ami_id" {}
 variable "instance_type" {}
 variable "vpc_id" {}
 variable "key" {}
-variable "tags" {}
+variable "project" {}
+variable "env" {}

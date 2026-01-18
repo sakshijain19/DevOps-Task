@@ -20,8 +20,9 @@ variable "instance_type" {
 variable "key" {
     default = "id_rsa"
 }
-variable "tags" {
-    default = {
-        Name = "EC2-inside-VPC"
-    }
+variable "project" {
+default = "edutrade"
+}
+variable "env" {
+default = "dev"
 }
