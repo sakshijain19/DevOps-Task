@@ -34,9 +34,8 @@ egress {
 }
 
 tags = {
-    Name = "web-sg"
+    Name = "${var.project}-sg"
 }
-depends_on = [aws_security_group.web_sg]
 }
 
 module "my_vpc_module" {
