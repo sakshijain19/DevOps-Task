@@ -62,7 +62,7 @@ depends_on = [ aws_security_group.web_sg ]
 }
 
 module "my_vpc_module" {
-source = "./Module/VPC"
+source = ".Module/VPC"
 vpc_cidr_block = var.vpc_cidr
 pvt_subnet_cidr = var.private_subnet_cidr
 pub_subnet_cidr = var.public_subnet_cidr
@@ -74,5 +74,5 @@ ami_id = var.ami_id
 instance_type = var.instance_type
 vpc_id = module.my_vpc_module.pubsubnet_id
 key = var.key
-tags = var.tags 
+tags = var.tags
 }
