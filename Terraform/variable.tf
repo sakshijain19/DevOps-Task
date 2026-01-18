@@ -16,9 +16,6 @@ variable "ami_id" {
 variable "instance_type" {
     default = "t3.micro"
 }
-variable "sg_id" {
-type = list(string)
-}
 
 variable "key" {
     default = "id_rsa"
