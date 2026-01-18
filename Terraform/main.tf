@@ -58,6 +58,6 @@ module "my_instance" {
   instance_type  = var.instance_type
   project        = var.project
   env            = var.environment
-  subnet_id      = module.my_vpc_module.pubsubnet_id
+  subnet_id      = module.my_vpc_module.pub_subnet_id
   sg_ids         = [aws_security_group.mysg.id]
 }
