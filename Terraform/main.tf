@@ -6,7 +6,7 @@ backend "s3" {
 }
 }
 provider "aws" {
-region = "var.region"
+region = var.region
 }
 resource "aws_security_group" "web_sg" {
     name   = "web-sg"
@@ -36,7 +36,7 @@ egress {
 tags = {
     Name = "web-sg"
 }
-depends_on = [ aws_security_group.web_sg ]
+depends_on = [aws_security_group.web_sg]
 }
 
 module "my_vpc_module" {
