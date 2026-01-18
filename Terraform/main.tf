@@ -40,22 +40,24 @@ resource "aws_security_group" "mysg" {
   ]
 }
 module "my_vpc_module" {
-    source = "./Modules/VPC"
-    project = var.project
-    vpc_cidr = var.vpc_cidr
-    pvt_subnet_cidr = var.private_cidr
-    pub_subnet_cidr = var.public_cidr
-    env = var.environment
+  source = "./Module/VPC"
+
+  project         = var.project
+  vpc_cidr        = var.vpc_cidr
+  pvt_subnet_cidr = var.private_cidr
+  pub_subnet_cidr = var.public_cidr
+  env             = var.environment
 }
 
 module "my_instance" {
-  source = "./Modules/EC2_Instance"
-  count = var.instance_count
-  image_id = var.image_id 
-  key_pair = var.key_pair
-  instance_type = var.instance_type
-  project = var.project
-  env = var.environment
-  subnet_id = module.my_vpc_module.pub_subnet_id
-  sg_ids = [aws_security_group.mysg.id]
+  source = "./Module/EC2_Instance"
+
+  count          = var.instance_count
+  image_id       = var.image_id
+  key_pair       = var.key_pair
+  instance_type  = var.instance_type
+  project        = var.project
+  env            = var.environment
+  subnet_id      = module.my_vpc_module.pubsubnet_id
+  sg_ids         = [aws_security_group.mysg.id]
 }
