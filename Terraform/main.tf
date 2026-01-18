@@ -1,60 +1,61 @@
 terraform {
-backend "s3" {
-    bucket = "sample001-test"
-    key    = "terraform.tfstate"
+  backend "s3" {
+    bucket = "batch151234"
     region = "us-east-1"
-}
+    key = "tfstate"
+  }
 }
 provider "aws" {
-region = var.region
+  region = "us-east-1"
 }
-resource "aws_security_group" "web_sg" {
-    name   = "${var.project}-sg"
-    vpc_id = module.my_vpc_module.vpc_id
+resource "aws_security_group" "mysg" {
+  name        = "${var.project}-mysg"
+  description = "Allow httpd service"
+  vpc_id      = module.my_vpc_module.vpc_id
 
-ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-}
+  ingress {
+    protocol         = "TCP"
+    from_port        = 80
+    to_port          = 80
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+  ingress {
+    protocol         = "TCP"
+    from_port        = 22
+    to_port          = 22
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
 
-ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-}
-
-egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-}
-
-tags = {
-    Name = "${var.project}-sg"
-}
-depends_on = [
+  tags = {
+    Name = "${var.project}-mysg"
+  }
+  depends_on = [
     module.my_vpc_module
-]
+  ]
 }
-
 module "my_vpc_module" {
-source = "./Module/VPC"
-cidr_block = var.cidr_block
-public_subnet_cidr = var.public_subnet_cidr
-private_subnet_cidr = var.private_subnet_cidr
+    source = "./modules/vpc"
+    project = var.project
+    vpc_cidr = var.vpc_cidr
+    pvt_subnet_cidr = var.private_cidr
+    pub_subnet_cidr = var.public_cidr
+    env = var.environment
 }
 
-module "EC2_module" {
-source = "./Module/EC2_Instance"
-ami_id = var.ami_id
-instance_type = var.instance_type
-subnet_id = module.my_vpc_module.public_subnet_id
-key = var.key
-project = var.project
-env = var.env
-sg_id = aws_security_group.web_sg.id
+module "my_instance" {
+  source = "./modules/instance"
+  count = var.instance_count
+  image_id = var.image_id 
+  key_pair = var.key_pair
+  instance_type = var.instance_type
+  project = var.project
+  env = var.environment
+  subnet_id = module.my_vpc_module.pub_subnet_id
+  sg_ids = [aws_security_group.mysg.id]
 }
