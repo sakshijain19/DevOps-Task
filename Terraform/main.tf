@@ -42,7 +42,7 @@ resource "aws_instance" "webserver" {
 ami           = var.ami_id
 instance_type = var.instance_type
 
-subnet_id              = module.my_vpc_module.pubsubnet_id
+subnet_id              = module.my_vpc_module.vpc_id
 vpc_security_group_ids = [aws_security_group.web_sg.id]
 
 tags = {
@@ -62,17 +62,18 @@ depends_on = [ aws_security_group.web_sg ]
 }
 
 module "my_vpc_module" {
-source = "Terraform/Module/VPC"
-vpc_cidr_block = var.vpc_cidr
-pvt_subnet_cidr = var.private_subnet_cidr
-pub_subnet_cidr = var.public_subnet_cidr
+source = "./Module/VPC"
+cidr_block           = var.cidr_block
+public_subnet_cidr   = var.public_subnet_cidr
+private_subnet_cidr  = var.private_subnet_cidr
 }
 
+
 module "EC2_module" {
-source = "./Module/EC2 Instance"
+source = "./Module/EC2_Instance"
 ami_id = var.ami_id
 instance_type = var.instance_type
-vpc_id = module.my_vpc_module.pubsubnet_id
+vpc_id = module.my_vpc_module.vpc_id
 key = var.key
 tags = var.tags
 }
