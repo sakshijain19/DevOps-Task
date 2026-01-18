@@ -52,5 +52,6 @@ ami_id = var.ami_id
 instance_type = var.instance_type
 vpc_id = module.my_vpc_module.vpc_id
 key = var.key
-tags = var.tags
+project = var.project
+env = var.env
 }

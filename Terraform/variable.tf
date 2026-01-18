@@ -21,7 +21,7 @@ variable "key" {
     default = "id_rsa"
 }
 variable "project" {
-default = "edutrade"
+default = "Cloud"
 }
 variable "env" {
 default = "dev"
