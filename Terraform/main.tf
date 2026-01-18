@@ -10,7 +10,7 @@ region = "us-east-1"
 }
 resource "aws_security_group" "web_sg" {
     name   = "web-sg"
-    vpc_id = aws_vpc.myvpc.id
+    vpc_id = module.my_vpc_module.vpc_id
 
 ingress {
     from_port   = 22
