@@ -2,15 +2,18 @@
   hosts: all
   vars:
     greeting: "Hello, World!"  #Global variable
+  vars_files:
+    - ./var.txt
+    - ./var2.txt   #File variable
   tasks:
     - name: Print tasks
       debug:
         msg: "This is my first Ansible playbook!"
     - name: my name
       debug:
-        msg: "My name is {{ name}}"
-      vars:
-        name: "Sakshi Jain"  #Local variable
+        msg: "My name is {{ name }}"
+      # vars:
+      #   name: "Sakshi Jain"  #Local variable
     - name: Print greeting
       debug:
         msg: "{{ greeting }}"
