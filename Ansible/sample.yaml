@@ -2,9 +2,13 @@
   hosts: all
   vars:
     greeting: "Hello, World!"  #Global variable
-  vars_files:
-    - ./var.txt
-    - ./var2.txt   #File variable
+  # vars_files:
+  #   - ./var.txt
+  #   - ./var2.txt   #File variable
+  vars_prompt:
+    - name: "name"
+      prompt: "Enter your name"
+      private: false   #Prompt variable
   tasks:
     - name: Print tasks
       debug:
