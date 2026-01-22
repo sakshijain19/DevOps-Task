@@ -8,7 +8,7 @@
         msg: "This is my first Ansible playbook!"
     - name: my name
       debug:
-        msg: "My name is "
+        msg: "My name is {{ name}}"
       vars:
         name: "Sakshi Jain"  #Local variable
     - name: Print greeting
