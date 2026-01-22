@@ -1,6 +1,16 @@
 - name: my 1st playbook
   hosts: all
+  vars:
+    greeting: "Hello, World!"  #Global variable
   tasks:
     - name: Print tasks
       debug:
         msg: "This is my first Ansible playbook!"
+    - name: my name
+      debug:
+        msg: "My name is "
+      vars:
+        name: "Sakshi Jain"  #Local variable
+    - name: Print greeting
+      debug:
+        msg: "{{ greeting }}"
