@@ -1,2 +1,6 @@
 ---
 # handlers file for first_role
+- name: Restart apache service
+  service:
+    name: "{{ pkg }}"
+    state: restarted

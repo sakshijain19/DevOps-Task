@@ -1,2 +1,14 @@
 ---
 # tasks file for first_role
+tasks:
+  - name: Install apache and httpd
+    package:
+      name: "{{pkg}}"
+      state: present
+    when: ansible_os_family == "Debian"
+  - name: Copy index.html to web server directory
+    copy:
+      src: index.html
+      dest: /var/www/html/index.html
+    notify:
+      - Restart apache service
