@@ -1,0 +1,21 @@
+- name: tags used
+  hosts: all
+  become: true
+  tags:
+    - installation
+  tasks:
+    - name: Install Apache on Debian-based systems
+      apt:
+        name: apache2
+        state: latest
+      when: ansible_os_family == "Debian"
+      tags:
+        - installation
+    - name: Install Httpd on RedHat-based systems
+      yum:
+        name: httpd
+        state: latest
+      when: ansible_os_family == "RedHat"
+      tags:
+        - installation
+  ignore_errors: true
