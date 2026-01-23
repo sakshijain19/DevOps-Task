@@ -6,7 +6,7 @@
         name: apache2
         state: present
       when: ansible_os_family == "Debian"
-    - name: start apache
+    - name: restart apache
       service:
         name: apache2
         state: restarted
@@ -16,6 +16,3 @@
       copy:
         src: ./index.html
         dest: //var/www/html/index.html
-        owner: user
-        group: usergroup
-        mode: '0644'
