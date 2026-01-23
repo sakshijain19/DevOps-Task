@@ -22,8 +22,8 @@
       debug:
         msg: "{{ greeting }}"
     - name: Run Command
-      command: hostname      #resister variable
+      command: hostname
       register: host_output
     - name: Show Hostname
       debug:
-        msg: "The hostname is {{ host_output.stdout }}"  
+        msg: "The hostname is {{ host_output.stdout }}"
