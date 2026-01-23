@@ -1,6 +1,5 @@
 ---
 # tasks file for first_role
-tasks:
   - name: Install apache and httpd
     package:
       name: "{{pkg}}"
