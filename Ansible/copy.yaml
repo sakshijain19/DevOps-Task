@@ -21,4 +21,9 @@
         dest: /var/www/html/index.html
         owner: root
         group: root
-        mode: '0644'
+        mode: '0644' #permissions
+    - name: Add one line in index.html
+      lineinfile:
+        path: /var/www/html/index.html
+        regexp: '^<h1>'
+        line:   "<h1> Deployed using Ansible </h1>"
