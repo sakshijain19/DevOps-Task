@@ -31,8 +31,7 @@
     - name: add muti line in index.html
       blockinfile:
         path: /var/www/html/index.html
-        markers: '<-- {mark} ANSIBLE MANAGED BLOCK -->'
-        insertafter: '</body>'
+        markers: "<-- {mark} ANSIBLE MANAGED BLOCK -->"
         block: |
           <h1> Deployed using Ansible </h1>
           <p> This is a sample paragraph added by Ansible. </p>
