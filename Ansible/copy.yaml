@@ -28,3 +28,10 @@
         regexp: '^<h1>'
         insertafter: '</body>'
         line: "<h1> Deployed using Ansible </h1>"
+    - name: add muti line in index.html
+      blockinfile:
+        path: /var/www/html/index.html
+        insertafter: '</body>'
+        block: |
+          <h1> Deployed using Ansible </h1>
+          <p> This is a sample paragraph added by Ansible. </p>
