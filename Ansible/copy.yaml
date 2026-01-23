@@ -6,12 +6,11 @@
         name: apache2
         state: present
       when: ansible_os_family == "Debian"
-    - name: start apache service
+    - name: start apache2
       service:
         name: apache2
         state: started
         enabled: true
-      when: ansible_os_family == "Debian"
     - name: Copy file to remote server
       copy:
         src: ./index.html
