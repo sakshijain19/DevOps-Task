@@ -26,4 +26,5 @@
       lineinfile:
         path: /var/www/html/index.html
         regexp: '^<h1>'
-        line:   "<h1> Deployed using Ansible </h1>"
+        insertafter: '</body>'
+        line: "<h1> Deployed using Ansible </h1>"
