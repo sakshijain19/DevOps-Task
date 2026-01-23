@@ -1,0 +1,21 @@
+- name: copy a file to remote server
+  hosts: all
+  tasks:
+    - name: install apache http server
+      package:
+        name: apache2
+        state: present
+      when: ansible_os_family == "Debian"
+    - name: start apache
+      service:
+        name: apache2
+        state: restarted
+        enabled: true
+      when: ansible_os_family == "Debian"
+    - name: Copy file to remote server
+      copy:
+        src: ./index.html
+        dest: //var/www/html/index.html
+        owner: user
+        group: usergroup
+        mode: '0644'
